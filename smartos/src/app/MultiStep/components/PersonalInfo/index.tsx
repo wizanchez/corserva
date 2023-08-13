@@ -43,6 +43,7 @@ export const PersonalInfo = () => {
           id=''
           value={actionInput('GET', personalEmail, '') as string}
           error={actionInput('ERROR', personalEmail, '' ) as boolean}
+          errorText= {actionInput('ERROR_MSG', personalEmail, '' ) as string}
           label='Email Address'
           placeholder='e.g. stephenking@lorem.com'
           onChange={(e: TChange ) => actionInput('SET', personalEmail, e.target.value )}

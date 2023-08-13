@@ -357,15 +357,100 @@ $xxxl: 3400px; // For larger
   display: flex;
   justify-content: space-between;
 
+  @include sm{
+    display: flex;
+    flex-direction: column;
+  }
+
   &__card{
     border-radius: 8px;
     border: 1px solid var(--border-color);
     background: var(--white);
     width: 31%;
     min-height: 160px;
-    padding: 20px 16px;
+    padding: 20px 16px 16px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    cursor: pointer;
+
+    @include sm{
+      min-height: initial;
+      width: 100%;
+      padding: 17px 16px 16px;
+      flex-direction: row;
+      justify-content: flex-start;
+      margin-bottom: 12px;
+    }
+
+    &__body{
+      @include sm{
+        margin-left: 14px;
+      }
+    }
+
+    &__select{
+      background: var(--very-light-grey);
+      border: 1px solid var(--purple);
+    }
+
+    &:hover {
+      border: 1px solid var(--purple);
+    }
+
+    &__title{
+      color: var(--denim);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      margin-bottom: 7px;
+    }
+
+    &__subTitle{
+      color: var(--grey);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+    }
+
+    &__free{
+      color: var(--denim);
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      margin-top: 7px;
+    }
   }
 }
+
+.selectPerYear{
+  margin-top: 32px;
+  border-radius: 8px;
+  background: var(--very-light-grey);
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__text{
+    color: var(--grey);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    &__select{
+      color: var(--denim);
+    }
+  }
+
+  &__switch{
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+}
+
+

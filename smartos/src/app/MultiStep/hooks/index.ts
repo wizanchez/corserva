@@ -7,6 +7,8 @@ import {
   type IpageInitialState,
 } from '../interfaces'
 
+import { testValidateEmail } from '../../../utils'
+
 const MSG = {
   CODEFOUND: 'Código encontrado',
   CODENOTFOUND: 'Código NO encontrado',
@@ -27,8 +29,11 @@ const useMultiStep = () => {
     const isSet = action === 'SET'
     const isGet = action === 'GET'
     const isError = action === 'ERROR'
+    const isMsgError = action === 'ERROR_MSG'
+
     if (isSet) {
       changeState({ [`${inputName}Error`]: false })
+      changeState({ [`${inputName}ErrorMsg`]: '' })
       changeState({ [inputName]: value })
       return true
     }
@@ -43,6 +48,9 @@ const useMultiStep = () => {
       }
       break
     case 'personalEmail':
+      if (isMsgError) {
+        return state.personalEmailErrorMsg || 'This field is required'
+      }
       if (isGet) {
         return state.personalEmail
       }
@@ -79,6 +87,18 @@ const useMultiStep = () => {
     resolve(true)
   })
 
+  const checKPersonalMail = () => {
+    const isMailValid = testValidateEmail(state.personalEmail)
+    if (!isMailValid) {
+      changeState({
+        personalEmailError: true,
+        personalEmailErrorMsg: 'The email is invalid'
+      })
+      return false
+    }
+    return true
+  }
+
   const handleNext = async (type: PAGE_NAME, action: TTAction) => {
     const isPrev = action === 'PREV'
 
@@ -94,7 +114,10 @@ const useMultiStep = () => {
       ])
 
       if (isValid) {
-        changeState({page: PAGE_NAME.SELECT_YOUR_PLAN})
+        const isMailValid = checKPersonalMail()
+        if (isMailValid) {
+          changeState({page: PAGE_NAME.SELECT_YOUR_PLAN})
+        }
       }
       break
     case PAGE_NAME.SELECT_YOUR_PLAN:
@@ -105,9 +128,10 @@ const useMultiStep = () => {
     }
   }
 
-  const run = () => {
-    changeState({bannerInitialVisible: true})
-  }
+  const run = () => {  }
+
+  const handlePlan = (planSelect: number) => changeState({ planSelect })
+  const handlePlanPerYear = (isYear: boolean) => changeState({ isPerYear: isYear })
 
   useEffect(() => {
     run()
@@ -116,8 +140,10 @@ const useMultiStep = () => {
   return {
     ...state,
     events:{
+      handlePlan,
       handleNext,
       actionInput,
+      handlePlanPerYear
     }
   }
 }
