@@ -1,0 +1,371 @@
+html, body {
+  font-family: var(--font-ubuntu);
+  background: var(--bg);
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+$xsm: 374px; // For extra small
+$sm: 576px; // For small
+$md: 768px; // For medium
+$lg: 940px; // For large
+$xl: 1200px; // For extra larger
+$xxl: 1400px; // For larger
+$xxxl: 3400px; // For larger
+
+//For Extra Small
+@mixin xsm {
+  @media screen and (max-width: ($xsm)) {
+    @content;
+  }
+}
+
+//For Small
+@mixin sm {
+  @media screen and (max-width: ($sm)) {
+    @content;
+  }
+}
+
+//For Medium
+@mixin md {
+  @media screen and (max-width: ($md)) {
+    @content;
+  }
+}
+
+//For large
+@mixin lg {
+  @media screen and (max-width: ($lg)) {
+    @content;
+  }
+}
+
+//For Extra Large
+@mixin xl {
+  @media screen and (max-width: ($xl)) {
+    @content;
+  }
+}
+
+//For Extra Extra Large
+@mixin xxl {
+  @media screen and (max-width: ($xxl)) {
+    @content;
+  }
+}
+
+@mixin xxxl {
+  @media screen and (max-width: ($xxxl)) {
+    @content;
+  }
+}
+
+.box {
+  min-width: 940px;
+  max-width: 940px;
+  max-height: 600px;
+  min-height: 600px;
+
+  border-radius: 15px;
+  background: var(--white, #FFF);
+  box-shadow: 0px 25px 40px -20px rgba(0, 0, 0, 0.10);
+  padding: 16px;
+
+  display: flex;
+
+  @include lg{
+    width: 90%;
+    min-width: 90%;
+    max-width: 90%;
+    min-height: initial;
+    max-height: initial;
+  }
+  @include xsm{
+    min-width: 374px;
+    max-width: 374px;
+  }
+}
+
+.bgStepXl{
+  max-width: 274px;
+  min-width: 274px;
+  border-radius: 10px;
+  background: var(--bg-pink);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-image: url('../../images/bg/oval.svg');
+  padding-top: 40px;
+  padding-left: 32px;
+  margin-right: 100px;
+  @include lg{
+    display: none;
+  }
+}
+
+.bgStepXs{
+  display: none;
+  height: 115px;
+
+  @include lg{
+    display: flex;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+  }
+}
+
+.container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  @include sm{
+    // background: var(--bg-pink);
+    background-image: url('../../images/bg/oval2.svg');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 100% 33%;
+    background-position-y: -31px;
+    justify-content: top;
+  }
+
+  @include lg{
+    justify-content: flex-start ;
+  }
+}
+
+
+.cicle{
+  width: 33px;
+  height: 33px;
+  border: 1px solid var(--white);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  &__select{
+    background: var(--sky-blue);
+    color: var(--denim);
+    border-color: var(--sky-blue);
+  }
+}
+
+.sectionCircle{
+  display: flex;
+  height: 35px;
+  margin-bottom: 32px;
+  &__content{
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+    @include lg{
+      display: none;
+    }
+    &__title{
+      margin-bottom: 4px;
+      color: var(--light-blue);
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+
+    &__subTitle{
+      color: var(--white);
+      font-family: Ubuntu;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+  }
+
+  @include lg{
+    margin-bottom: initial;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
+
+.flex{
+  display: flex;
+}
+
+.stepXsList{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title{
+  color: var(--denim);
+  font-feature-settings: 'clig' off, 'liga' off;
+  /* Heading */
+  font-family: Ubuntu;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 12px;
+  margin-top: 56px;
+
+  &__subTitle{
+    color: var(--grey);
+    /* Body (L) */
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px;
+  }
+
+  @include md{
+    font-size: 24px;
+    margin-top: initial;
+  }
+}
+
+.containerTask{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-right: 85px;
+
+  @include md{
+    padding-right: initial;
+  }
+}
+
+.labelTitle{
+  margin-bottom: 35px;
+  @include md{
+    margin-bottom: 22px;
+  }
+}
+
+.textField{
+  &__label{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+    @include md{
+      margin-bottom: 3px;
+    }
+
+    &__name{
+      color: var(--denim);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+
+    &__error{
+      color: var(--red-errors);
+      text-align: right;
+      font-family: Ubuntu;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+  }
+
+  margin-bottom: 24px;
+  @include md{
+    margin-bottom: 16px;
+  }
+}
+
+.wFull{
+  width: 100%;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  &:hover {
+    border-color: var(--purple) !important;
+    border-radius: 5px;
+  }
+}
+
+.MuiOutlinedInput-notchedOutline.Mui-focused .MuiOutlinedInput-nochetOutline{
+  border-color: green !important;
+}
+
+.formFooter{
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  &__btn{
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  @include md{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: initial;
+    background-color: white;
+    text-align: center;
+    padding-top: 16px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}
+
+.btnNext{
+  @include md{
+    font-size: 14px !important;
+    border-radius: 4px !important;
+    background-color: var(--denim) !important;
+    border-color: var(--denim) !important;
+  }
+}
+
+.btnPrev{
+  @include md{
+    font-size: 14px !important;
+    border-radius: 4px !important;
+  }
+}
+
+.cardPlan{
+  display: flex;
+  justify-content: space-between;
+
+  &__card{
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--white);
+    width: 31%;
+    min-height: 160px;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

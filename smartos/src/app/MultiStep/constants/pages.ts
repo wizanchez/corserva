@@ -1,0 +1,4 @@
+export enum PAGE_NAME {
+  PERSONAL_INFO = 1,
+  SELECT_YOUR_PLAN = 2
+}
