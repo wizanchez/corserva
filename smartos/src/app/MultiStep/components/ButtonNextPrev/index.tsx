@@ -83,9 +83,11 @@ export const ButtonNextPrev: FC<IButtonNext> = (props) => {
   const {
     labelNext,
     labelPrev,
+    classNext,
     onClickPrev,
     onClickNext,
   } = props
+
   return (
     <div className='formFooter'>
       <div className='formFooter__btn'>
@@ -102,7 +104,7 @@ export const ButtonNextPrev: FC<IButtonNext> = (props) => {
         </div>
         <BootstrapButtonNext
           variant="contained"
-          className='btnNext'
+          className={`btnNext ${classNext}`}
           onClick={onClickNext}
         >
           {labelNext}

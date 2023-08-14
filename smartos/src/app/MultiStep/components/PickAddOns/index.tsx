@@ -7,19 +7,19 @@ import { PAGE_NAME } from '../../constants'
 import ButtonNextPrev from '../ButtonNextPrev'
 import { usePageContext } from '../../context'
 
-export const SelectYourPlan = () => {
+import { ListPickAdd } from '../ListPickAdd'
+
+export const PickAddOns = () => {
   const {
     page,
-    listPlan,
+    listPick,
     isPerYear,
-    planSelect,
     events:{
-      handlePlan,
       handleNext,
-      handlePlanPerYear,
+      handleSelectAddOn,
     }
   } = usePageContext()
-  const pageName = PAGE_NAME.SELECT_YOUR_PLAN
+  const pageName = PAGE_NAME.PICK_ADD_ONS
 
   if (page !== pageName) {
     return null
@@ -28,19 +28,14 @@ export const SelectYourPlan = () => {
   return (
     <div className='containerTask'>
       <LabelTitle
-        title='Select your plan'
-        subTitle='You have the option of monthly or yearly billing.'
+        title='Pick add-ons'
+        subTitle='Add-ons help enhance your gaming experience.'
       />
       <div>
-        <ListPlan
-          listPlan={listPlan}
+        <ListPickAdd
+          listPick={listPick}
           isPerYear={isPerYear}
-          planSelect={planSelect}
-          clickSelect={handlePlan}
-        />
-        <SwitchPlan
-          isPerYear={isPerYear}
-          handlePlanPerYear={handlePlanPerYear}
+          clickSelect={handleSelectAddOn}
         />
       </div>
       <ButtonNextPrev
@@ -53,4 +48,4 @@ export const SelectYourPlan = () => {
   )
 }
 
-export default SelectYourPlan
+export default PickAddOns

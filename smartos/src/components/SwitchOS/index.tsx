@@ -2,6 +2,8 @@ import React, { FC } from 'react'
 import Switch from '@material-ui/core/Switch'
 import { styled } from '@material-ui/styles'
 
+import { ISwitchOS } from './interfaces'
+
 const IOSSwitch = styled(Switch)(({
   width: 38,
   height: 20,
@@ -48,12 +50,6 @@ const IOSSwitch = styled(Switch)(({
 
   },
 }))
-
-export interface ISwitchOS{
-  isChecked?: boolean
-  className?: string
-  onChange: (isChe: boolean) => void
-}
 
 export const SwitchOS:FC<ISwitchOS> = (props) => {
   const {

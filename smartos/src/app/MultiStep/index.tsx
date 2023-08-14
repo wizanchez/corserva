@@ -5,6 +5,8 @@ import { Box, Container } from '../../components'
 import {
   StepXl,
   StepXs,
+  PickAddOns,
+  FinishingUp,
   PersonalInfo,
   SelectYourPlan,
 } from './components'
@@ -18,6 +20,8 @@ export const MultiStep = () => {
           <StepXl />
           <PersonalInfo />
           <SelectYourPlan />
+          <PickAddOns />
+          <FinishingUp />
         </Box>
       </Container>
     </PageProvider>

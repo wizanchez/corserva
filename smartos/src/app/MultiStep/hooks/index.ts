@@ -8,6 +8,12 @@ import {
 } from '../interfaces'
 
 import { testValidateEmail } from '../../../utils'
+import {
+  priceDiscount,
+  getPrefixPlan,
+  getPrefixIsYear,
+  getPrefixPlanName,
+} from '../utils'
 
 const MSG = {
   CODEFOUND: 'Código encontrado',
@@ -99,14 +105,54 @@ const useMultiStep = () => {
     return true
   }
 
+  const calculateAllPlan = () => {
+    const { isPerYear, listPlan, listPick } = state
+    const infoPlan = listPlan.filter( item => item.id === state.planSelect)[0]
+    const planMode = getPrefixPlanName(isPerYear)
+    const planModeShort = getPrefixPlan(isPerYear)
+    const perYear = getPrefixIsYear(isPerYear)
+    const planPrice = priceDiscount({
+      price: infoPlan.price,
+      freeMoth: infoPlan.freeMonthPerYear,
+      isPerYear
+    })
+
+    const infoPick = listPick
+      .filter( item => item.isSelect)
+      .map(item1 => {
+        const pickPrice = priceDiscount({
+          price: item1.price,
+          freeMoth: item1.freeMonthPerYear,
+          isPerYear
+        })
+        return {
+          ...item1,
+          priceTotal: pickPrice,
+          priceTotalFormat: `+$${pickPrice}/${planModeShort}`,
+        }
+      })
+
+    const totalPriceAddOn = infoPick.reduce((ucc, curren) => ucc + curren.priceTotal, 0)
+    const granTotal = totalPriceAddOn + planPrice
+    const infoSummary = {
+      infoPick,
+      granTotal,
+      totalPriceAddOn,
+      priceTotalTitle: `Total (${perYear})`,
+      planPrice: `$${planPrice}/${planModeShort}`,
+      planName : `${infoPlan.title} (${planMode})`,
+      granTotalFormat: `$${granTotal}/${planModeShort}`,
+    }
+    changeState({ infoSummary })
+  }
+
   const handleNext = async (type: PAGE_NAME, action: TTAction) => {
     const isPrev = action === 'PREV'
+    const isNext = action === 'NEXT'
 
     switch (type) {
     case PAGE_NAME.PERSONAL_INFO:
-      if (isPrev) {
-
-      }
+      if (isPrev) { }
       const isValid = await ValidField([
         'personalName',
         'personalEmail',
@@ -124,8 +170,37 @@ const useMultiStep = () => {
       if (isPrev) {
         changeState({page: PAGE_NAME.PERSONAL_INFO})
       }
+      if (isNext) {
+        changeState({page: PAGE_NAME.PICK_ADD_ONS})
+      }
+      break
+    case PAGE_NAME.PICK_ADD_ONS:
+      if (isPrev) {
+        changeState({page: PAGE_NAME.SELECT_YOUR_PLAN})
+      }
+      calculateAllPlan()
+      if (isNext) {
+        changeState({page: PAGE_NAME.FINISHINGUP})
+      }
+      break
+    case PAGE_NAME.FINISHINGUP:
+      if (isPrev) {
+        changeState({page: PAGE_NAME.PICK_ADD_ONS})
+      }
       break
     }
+  }
+
+  const handleSelectAddOn = (idSelect: number) => {
+    const newList = state.listPick.map(item => {
+      const { isSelect, id } = item
+      const newSelect = id === idSelect ? !isSelect : isSelect
+      return {
+        ...item,
+        isSelect: newSelect
+      }
+    })
+    changeState({listPick: newList})
   }
 
   const run = () => {  }
@@ -143,7 +218,8 @@ const useMultiStep = () => {
       handlePlan,
       handleNext,
       actionInput,
-      handlePlanPerYear
+      handlePlanPerYear,
+      handleSelectAddOn,
     }
   }
 }

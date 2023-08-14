@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 
+import { getPrefixPlan, priceDiscount } from '../../utils'
 import { IListPlan, IPlanOne } from '../../interfaces'
 
 const ListPlan: FC<IListPlan> = (props) => {
@@ -14,10 +15,13 @@ const ListPlan: FC<IListPlan> = (props) => {
             price,
             title,
             uriIcon,
-            priceFormat,
             freeMonthPerYear,
+
           } = item
           const classSelect = planSelect === id ? 'cardPlan__card__select' : ''
+          const freeMoth = freeMonthPerYear
+          const newPrice = priceDiscount({price, freeMoth, isPerYear})
+          const prefPrice = getPrefixPlan(isPerYear)
 
           return (
             <div key={price} className={`cardPlan__card ${classSelect}`} onClick={() => clickSelect(id)}>
@@ -26,7 +30,7 @@ const ListPlan: FC<IListPlan> = (props) => {
               </div>
               <div className='cardPlan__card__body'>
                 <div className='cardPlan__card__title'>{title}</div>
-                <div className='cardPlan__card__subTitle'>{priceFormat}</div>
+                <div className='cardPlan__card__subTitle'>{`$${newPrice}/${prefPrice}`}</div>
                 {isPerYear && (<div className='cardPlan__card__free'>{`${freeMonthPerYear} months free`}</div>)}
               </div>
             </div>

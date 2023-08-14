@@ -41,6 +41,7 @@ export const PersonalInfo = () => {
         />
         <TextInput
           id=''
+          type='email'
           value={actionInput('GET', personalEmail, '') as string}
           error={actionInput('ERROR', personalEmail, '' ) as boolean}
           errorText= {actionInput('ERROR_MSG', personalEmail, '' ) as string}
@@ -50,6 +51,7 @@ export const PersonalInfo = () => {
         />
         <TextInput
           id=''
+          type='tel'
           value={actionInput('GET', personalPhoneNumber, '') as string}
           error={actionInput('ERROR', personalPhoneNumber, '' ) as boolean}
           label='Phone Number'

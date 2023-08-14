@@ -8,6 +8,7 @@ const LABEL_ERROR = 'This field is required'
 
 export const TextInput:FC<ITextInput> = (props) => {
   const {
+    type,
     value,
     label,
     onChange,
@@ -33,6 +34,7 @@ export const TextInput:FC<ITextInput> = (props) => {
         onChange={onChange}
         className={classes.root}
         placeholder={placeholder}
+        type={type}
       />
     </div>
   )
