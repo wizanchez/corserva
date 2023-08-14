@@ -10,8 +10,8 @@ const ListStep: FC<IListStep> = (props) => {
       {
         listStep.map((item: IStepOne) => {
           const { step, title, subTitle } = item
-          const classSelect = step === stepSelect && 'cicle__select'
-
+          const classSelec5 = (step === 4 && stepSelect === 5) ? 'cicle__select' : ''
+          const classSelect = step === stepSelect ? 'cicle__select' : classSelec5
           return (
             <div className='sectionCircle' key={step}>
               <div className={`cicle ${classSelect}`}>{step}</div>

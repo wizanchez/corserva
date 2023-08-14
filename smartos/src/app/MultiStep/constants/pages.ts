@@ -3,5 +3,5 @@ export enum PAGE_NAME {
   SELECT_YOUR_PLAN = 2,
   PICK_ADD_ONS = 3,
   FINISHINGUP = 4,
-  THANK_YOU = 5
+  CONFIRMING = 5
 }

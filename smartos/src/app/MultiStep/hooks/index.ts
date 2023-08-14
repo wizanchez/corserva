@@ -187,6 +187,10 @@ const useMultiStep = () => {
       if (isPrev) {
         changeState({page: PAGE_NAME.PICK_ADD_ONS})
       }
+
+      if (isNext) {
+        changeState({page: PAGE_NAME.CONFIRMING})
+      }
       break
     }
   }

@@ -6,6 +6,7 @@ import {
   StepXl,
   StepXs,
   PickAddOns,
+  Confirming,
   FinishingUp,
   PersonalInfo,
   SelectYourPlan,
@@ -22,6 +23,7 @@ export const MultiStep = () => {
           <SelectYourPlan />
           <PickAddOns />
           <FinishingUp />
+          <Confirming />
         </Box>
       </Container>
     </PageProvider>

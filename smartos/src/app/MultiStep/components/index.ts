@@ -1,6 +1,7 @@
 export * from './StepXl'
 export * from './StepXs'
 export * from './ListStep'
+export * from './Confirming'
 export * from './PickAddOns'
 export * from './FinishingUp'
 export * from './PersonalInfo'
