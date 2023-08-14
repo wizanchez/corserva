@@ -13,7 +13,7 @@ export const Confirming = () => {
   }
 
   return (
-    <div className='containerTask'>
+    <div className='containerTask' data-testid='id.Confirming'>
       <div className='confirm'>
         <div className='confirm__img'>
           <img src={uriIcon} alt='thanks' width={80} />

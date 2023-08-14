@@ -3,11 +3,11 @@ import React, { FC } from 'react'
 import { getPrefixPlan, priceDiscount } from '../../utils'
 import { IListPlan, IPlanOne } from '../../interfaces'
 
-const ListPlan: FC<IListPlan> = (props) => {
+export const ListPlan: FC<IListPlan> = (props) => {
   const { listPlan, planSelect, isPerYear, clickSelect } = props
 
   return(
-    <div className='cardPlan'>
+    <div className='cardPlan' data-testid='id.ListPlan'>
       {
         listPlan.map((item: IPlanOne) => {
           const {

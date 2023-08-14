@@ -28,7 +28,7 @@ export const FinishingUp = () => {
   } = infoSummary
 
   return (
-    <div className='containerTask'>
+    <div className='containerTask' data-testid='id.FinishingUp'>
       <LabelTitle
         title='Finishing up'
         subTitle='Double-check everything looks OK before confirming.'

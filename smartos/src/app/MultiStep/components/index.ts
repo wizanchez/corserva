@@ -1,5 +1,6 @@
 export * from './StepXl'
 export * from './StepXs'
+export * from './ListPlan'
 export * from './ListStep'
 export * from './Confirming'
 export * from './PickAddOns'

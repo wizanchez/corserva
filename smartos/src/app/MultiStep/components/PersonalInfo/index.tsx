@@ -25,7 +25,7 @@ export const PersonalInfo = () => {
   const personalPhoneNumber = 'personalPhoneNumber'
 
   return (
-    <div className='containerTask'>
+    <div className='containerTask' data-testid='id.PersonalInfo'>
       <LabelTitle
         title='Personal info'
         subTitle='Please provide your name, email address, and phone number.'

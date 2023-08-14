@@ -26,7 +26,7 @@ export const SelectYourPlan = () => {
   }
 
   return (
-    <div className='containerTask'>
+    <div className='containerTask' data-testid='id.SelectYourPlan'>
       <LabelTitle
         title='Select your plan'
         subTitle='You have the option of monthly or yearly billing.'

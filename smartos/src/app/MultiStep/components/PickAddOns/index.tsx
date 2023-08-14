@@ -26,7 +26,7 @@ export const PickAddOns = () => {
   }
 
   return (
-    <div className='containerTask'>
+    <div className='containerTask' data-testid='id.PickAddOns'>
       <LabelTitle
         title='Pick add-ons'
         subTitle='Add-ons help enhance your gaming experience.'
